@@ -1,7 +1,7 @@
 # Regex to validate a Roman numeral
-const valid_roman_pattern =
+const VALID_ROMAN_PATTERN =
     r"""
-    ^\s*                   # Skip whitespace
+    ^\s*                   # Skip leading whitespace
     (
     M*                     # Thousands
     (C{0,9}|CD|DC{0,4}|CM) # Hundreds
@@ -11,7 +11,7 @@ const valid_roman_pattern =
     \s*$                   # Skip trailing whitespace
     """ix # Be case-insensitive and verbose
 
-const numeral_map = [
+const NUMERAL_MAP = [
     (1000, "M")
     (900,  "CM")
     (500,  "D")
@@ -28,13 +28,16 @@ const numeral_map = [
 ]
 
 function parseroman(str::ASCIIString)
-    if !ismatch(valid_roman_pattern, str)
-        throw(InvalidRomanError(str))
-    end
+    m = match(VALID_ROMAN_PATTERN, str)
+    m == nothing && throw(InvalidRomanError(str))
+    # Strip whitespace
+    str = m.captures[1]
+    # Make `str` uppercase
+    !isupper(str) && str = uppercase(str)
     i = 1
     val = 0
     strlen = length(str)
-    for (num_val, numeral) in numeral_map
+    for (num_val, numeral) in NUMERAL_MAP
         numlen = length(numeral)
         while i+numlen-1 <= strlen && str[i:i+numlen-1] == numeral
             val += num_val
@@ -45,19 +48,18 @@ function parseroman(str::ASCIIString)
 end
 
 function toroman(val::Integer)
-    if val < 0
-        throw(DomainError())
-    end
-    if val > 5000
-        warn("Roman numerals do not handle large numbers well")
-    end
+    val <= 0 && throw(DomainError())
+    val > 5000 && warn("Roman numerals do not handle large numbers well")
+
     str = ""
-    for (num_val, numeral) in numeral_map
+    for (num_val, numeral) in NUMERAL_MAP
         i = div(val, num_val)
         # Never concatenate an empty string to `str`
-        if i == 0; continue; end
-        str *= (numeral ^ i)
+        i == 0 && continue
+        str *= (numeral^i)
         val -= i*num_val
+        # Stop when ready
+        val == 0 && break
     end
     str
 end
