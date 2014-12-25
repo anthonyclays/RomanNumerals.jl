@@ -6,14 +6,15 @@ import Base: ==, isless,
 
 # Equality operators
 ==(n1::RN, n2::RN) = n1.val == n2.val
-==(x::BigInt, num::RN) = num.val == x
-==(num::RN, x::BigInt) = num.val == x
-==(x::Integer, num::RN) = num.val == x
-==(num::RN, x::Integer) = num.val == x
+# ==(x::BigInt, num::RN) = num.val == x
+# ==(num::RN, x::BigInt) = num.val == x
+# ==(x::Integer, num::RN) = num.val == x
+# ==(num::RN, x::Integer) = num.val == x
 
 # Comparisons
-isless(n1::RN, n2::RN) = n1.val < n2.val
-isless(num::RN, x::Integer) = num.val < x
+<(n1::RN, n2::RN) = n1.val < n2.val
+<=(n1::RN, n2::RN) = n1.val <= n2.val
+#<(num::RN, x::Integer) = num.val < x
 
 ## Arithmetic
 # Multiple argument operators
@@ -29,12 +30,16 @@ for op in [:div, :%, :gcd, :lcm]
 end
 
 # One argument operators
-for op in [:isqrt, :isodd, :iseven, :one, :isprime]
+for op in [:isqrt]
     @eval $(op)(num::RN) = $(op)(num.val) |> RN
 end
 
+# Integer properties
+for op in [:isodd, :iseven, :isprime]
+    @eval $(op)(num::RN) = $(op)(num.val)
+end
+
 # Who new Romans did number theory
-#= TODO: Figure out dict hashing
 function Base.factor(num::RN)
     factors = Dict{RN,RN}()
     for (fac, mul) in factor(num.val)
@@ -42,5 +47,4 @@ function Base.factor(num::RN)
     end
     factors
 end
-=#
 Base.primes(num::RN) = map(RN, primes(num.val))
