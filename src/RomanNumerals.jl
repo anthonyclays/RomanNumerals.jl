@@ -5,11 +5,11 @@ include("types.jl")
 
 # Defines the functions toroman and fromroman, to convert from Roman-formatted
 # string to int and vice versa
-include("conversion.jl")
+include("roman_conversion.jl")
 
 # Defines new method dispatching specific to Roman numerals
 include("arithmetic.jl")
 
-export RomanNumeral
+export RomanNumeral, @rn_str
 
 end # module RomanNumerals
