@@ -6,27 +6,20 @@ import Base: ==, isless,
 
 # Equality operators
 ==(n1::RN, n2::RN) = n1.val == n2.val
-# ==(x::BigInt, num::RN) = num.val == x
-# ==(num::RN, x::BigInt) = num.val == x
-# ==(x::Integer, num::RN) = num.val == x
-# ==(num::RN, x::Integer) = num.val == x
 
 # Comparisons
 <(n1::RN, n2::RN) = n1.val < n2.val
 <=(n1::RN, n2::RN) = n1.val <= n2.val
-#<(num::RN, x::Integer) = num.val < x
 
 ## Arithmetic
 # Multiple argument operators
 for op in [:+, :-, :*, :^, :max, :min]
-    @eval ($op)(ns::RN...) =
-        $(op)(map(n -> n.val, ns)...) |> RN
+    @eval ($op)(ns::RN...) = $(op)(map(n -> n.val, ns)...) |> RN
 end
 
 # Two argument operators
 for op in [:div, :%, :gcd, :lcm]
-    @eval ($op)(n1::RN, n2::RN) =
-        $(op)(n1.val, n2.val) |> RN
+    @eval ($op)(n1::RN, n2::RN) = $(op)(n1.val, n2.val) |> RN
 end
 
 # One argument operators
