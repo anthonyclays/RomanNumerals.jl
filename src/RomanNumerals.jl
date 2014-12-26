@@ -10,6 +10,6 @@ include("roman_conversion.jl")
 # Defines new method dispatching specific to Roman numerals
 include("arithmetic.jl")
 
-export RomanNumeral, @rn_str
+export RomanNumeral, @rn_str, InvalidRomanError
 
 end # module RomanNumerals
