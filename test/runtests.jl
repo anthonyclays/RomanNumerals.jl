@@ -9,8 +9,8 @@ using Base.Test
 @test rn"xx" == rn"XX"
 
 # Invalid numeral tests
-@test_throws InvalidRomanError rn"nope"
-@test_throws InvalidRomanError rn"XLX"
+@test_throws InvalidRomanError RomanNumeral("nope")
+@test_throws InvalidRomanError RomanNumeral("XLX")
 
 # arithmetic tests
 @test rn"I" + rn"IX" == rn"X"
