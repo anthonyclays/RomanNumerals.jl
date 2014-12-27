@@ -1,5 +1,20 @@
 using RomanNumerals
 using Base.Test
 
-# write your own tests here
-@test 1 == 1
+# Constructor tests
+@test RomanNumeral(46) == RomanNumeral("XLVI")
+@test RomanNumeral(1999) == RomanNumeral("MCMXCIX")
+@test rn"XXXX" == rn"XL"
+@test RomanNumeral(1) == rn"I"
+@test rn"xx" == rn"XX"
+
+# Invalid numeral tests
+@test_throws InvalidRomanError rn"nope"
+@test_throws InvalidRomanError rn"XLX"
+
+# arithmetic tests
+@test rn"I" + rn"IX" == rn"X"
+@test rn"L" - RomanNumeral(1) == rn"XLIX"
+@test rn"X" > rn"IX"
+@test isqrt(rn"MXXIV") == rn"XXXII"
+@test rn"XX" ^ rn"II" == rn"CD"
