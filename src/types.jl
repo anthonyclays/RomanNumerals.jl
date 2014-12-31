@@ -27,6 +27,7 @@ typealias RN RomanNumeral
 Base.convert(::Type{Bool}, num::RN) = true
 Base.convert(::Type{BigInt}, num::RN) = BigInt(num.val)
 Base.convert{T<:Integer}(::Type{T}, num::RN) = convert(T, num.val)
+Base.convert(::Type{RN}, num::Int) = RN(num)
 Base.promote_rule{T<:Integer}(::Type{RN}, ::Type{T}) = T
 Base.string(num::RN) = num.str
 
