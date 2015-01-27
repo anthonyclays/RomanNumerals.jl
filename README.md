@@ -45,7 +45,7 @@ julia> primes(rn"X")
   - Can interpret non-optimal numerals (e.g. `XIIII`).
     Non-optimal numerals were valid in traditional Rome, and even used more commonly than their minimal counterparts.
     RomanNumerals.jl will automatically optimize non-optimal inputs.
-- Can do number theory (Who new the Romans were into this kind of thing)
+- Can do number theory (Who knew the Romans were into this kind of thing)
 - Fast
 
 ## Contributing
