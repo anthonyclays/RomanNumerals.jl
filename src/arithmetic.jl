@@ -32,7 +32,7 @@ for op in [:isodd, :iseven, :isprime]
     @eval $(op)(num::RN) = $(op)(num.val)
 end
 
-# Who new Romans did number theory
+# Who knew Romans did number theory
 function Base.factor(num::RN)
     factors = Dict{RN,RN}()
     for (fac, mul) in factor(num.val)
