@@ -12,7 +12,7 @@ Basic arithmetic operations are supported.
 
 ### Examples
 
-```
+```julia
 julia> RomanNumeral(100)
 C
 
