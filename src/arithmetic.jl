@@ -1,4 +1,4 @@
-import Base: ==, isless,
+import Base: ==, isless, <=, <, >, 
     +, -, *, ^, max, min, div, %, gcd, lcm,
     isqrt, isodd, iseven, one, isprime, factor, primes
 
@@ -9,6 +9,7 @@ import Base: ==, isless,
 
 # Comparisons
 <(n1::RN, n2::RN) = n1.val < n2.val
+>(n1::RN, n2::RN) = n1.val > n2.val
 <=(n1::RN, n2::RN) = n1.val <= n2.val
 
 ## Arithmetic

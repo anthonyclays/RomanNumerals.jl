@@ -1,16 +1,16 @@
 # Thrown when the string passed to `parseroman` is not a valid Roman numeral.
 type InvalidRomanError <: Exception
-    str::ASCIIString
+    str::String
 end
 Base.showerror(io::IO, err::InvalidRomanError) =
     print(io, err.str, " is not a valid Roman numeral")
 
 immutable RomanNumeral <: Integer
     val::Int
-    str::ASCIIString
+    str::String
 
     RomanNumeral(int::Integer) = new(int, toroman(int))
-    RomanNumeral(str::ASCIIString) = begin
+    RomanNumeral(str::String) = begin
         num = parseroman(str)
         new(num, toroman(num))
     end

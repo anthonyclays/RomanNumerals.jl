@@ -1,4 +1,8 @@
+__precompile__()
+
 module RomanNumerals
+
+VERSION >= v"0.5.0" && using Primes
 
 # Defines the exception InvalidRomanError and the immutable type RomanNumeral
 include("types.jl")

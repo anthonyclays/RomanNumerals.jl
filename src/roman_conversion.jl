@@ -27,7 +27,7 @@ const NUMERAL_MAP = [
     (1,    "I")
 ]
 
-function parseroman(str::ASCIIString)
+function parseroman(str::String)
     m = match(VALID_ROMAN_PATTERN, str)
     m == nothing && throw(InvalidRomanError(str))
     # Strip whitespace
