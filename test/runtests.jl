@@ -1,6 +1,7 @@
 using RomanNumerals
 using Base.Test
 using Primes
+using Compat
 
 # Constructor tests
 @test RomanNumeral(46) == RomanNumeral("XLVI")
@@ -21,5 +22,5 @@ using Primes
 @test rn"XX" ^ rn"II" == rn"CD"
 
 # primus numeri et factorii (quis scit?)
-@test factor(rn"XX")[rn"V"]    == rn"I"
+@test @compat factor(rn"XX")[rn"V"]    == rn"I"
 @test length(primes(rn"XXIX")) == rn"X"
