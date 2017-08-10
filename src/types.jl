@@ -1,3 +1,5 @@
+using Compat
+
 # Thrown when the string passed to `parseroman` is not a valid Roman numeral.
 type InvalidRomanError <: Exception
     str::String
@@ -36,4 +38,4 @@ Base.print(io::IO, num::RN) = print(io, num.str)
 Base.show(io::IO, num::RN) = write(io, num.str)
 
 Base.length(num::RN) = length(num.str)
-Base.hash(num::RN) = xor(hash(num.str), hash(num.val))
+Base.hash(num::RN) = @compat xor(hash(num.str), hash(num.val))
