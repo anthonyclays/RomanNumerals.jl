@@ -1,6 +1,6 @@
-import Base: ==, isless, <=, <, >, 
+import Base: ==, isless, <=, <, >,
     +, -, *, ^, max, min, div, %, gcd, lcm,
-    isqrt, isodd, iseven, one, isprime, factor, primes
+    isqrt, isodd, iseven, one
 
 # Remember that RN is typealiased to RomanNumeral
 
@@ -34,11 +34,11 @@ for op in [:isodd, :iseven, :isprime]
 end
 
 # Who knew Romans did number theory
-function Base.factor(num::RN)
+function Primes.factor(num::RN)
     factors = Dict{RN,RN}()
     for (fac, mul) in factor(num.val)
         factors[RN(fac)] = RN(mul)
     end
     factors
 end
-Base.primes(num::RN) = map(RN, primes(num.val))
+Primes.primes(num::RN) = map(RN, Primes.primes(num.val))

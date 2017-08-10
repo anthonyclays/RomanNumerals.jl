@@ -1,5 +1,6 @@
 using RomanNumerals
 using Base.Test
+using Primes
 
 # Constructor tests
 @test RomanNumeral(46) == RomanNumeral("XLVI")
