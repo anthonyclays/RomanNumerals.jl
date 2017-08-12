@@ -33,7 +33,7 @@ function parseroman(str::String)
     # Strip whitespace
     str = m.captures[1]
     # Make `str` uppercase
-    if !isupper(str); str = uppercase(str); end
+    if !all(isupper,str); str = uppercase(str); end
     i = 1
     val = 0
     strlen = length(str)
