@@ -32,6 +32,7 @@ Base.convert{T<:Integer}(::Type{T}, num::RN) = convert(T, num.val)
 Base.convert(::Type{RN}, num::Int) = RN(num)
 Base.promote_rule{T<:Integer}(::Type{RN}, ::Type{T}) = T
 Base.string(num::RN) = num.str
+Base.parse(::Type{RomanNumeral}, str::String) = RomanNumeral(str)
 
 # IO
 Base.print(io::IO, num::RN) = print(io, num.str)
