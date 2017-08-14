@@ -8,6 +8,7 @@ using Primes
 @test rn"XXXX" == rn"XL"
 @test RomanNumeral(1) == rn"I"
 @test rn"xx" == rn"XX"
+@test parse(RomanNumeral, "xx") == rn"XX"
 
 # Invalid numeral tests
 @test_throws InvalidRomanError RomanNumeral("nope")
