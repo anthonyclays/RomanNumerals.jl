@@ -19,8 +19,8 @@ const RN = RomanNumeral
 
 # Standard functions
 # Conversion + promotion
-Base.Bool(::RN) = true
-(::Type{T})(num::RN) where {T <: Union{Base.BitInteger,BigInt}} = T(num.val)
+Base.convert(::Type{Bool}, ::RN) = true
+Base.convert(::Type{T}, x::RN) where {T<:Real} = T(x.val)
 
 Base.promote_rule(::Type{RN}, ::Type{T}) where {T <: Integer} = T
 
