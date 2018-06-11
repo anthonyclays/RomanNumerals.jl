@@ -27,13 +27,14 @@ const NUMERAL_MAP = [
     (1,    "I")
 ]
 
-function parseroman(str::String)
+import Base: parse
+function parse(::Type{RomanNumeral}, str::AbstractString)
     m = match(VALID_ROMAN_PATTERN, str)
-    m == nothing && throw(InvalidRomanError(str))
     # Strip whitespace
     str = m.captures[1]
     # Make `str` uppercase
     if !all(isupper,str); str = uppercase(str); end
+    m ≡ nothing && throw(Meta.ParseError(str * " is not a valid roman numeral"))
     i = 1
     val = 0
     strlen = length(str)

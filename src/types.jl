@@ -1,12 +1,5 @@
 using Compat
 
-# Thrown when the string passed to `parseroman` is not a valid Roman numeral.
-type InvalidRomanError <: Exception
-    str::String
-end
-Base.showerror(io::IO, err::InvalidRomanError) =
-    print(io, err.str, " is not a valid Roman numeral")
-
 immutable RomanNumeral <: Integer
     val::Int
     str::String
