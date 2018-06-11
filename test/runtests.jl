@@ -1,5 +1,5 @@
 using RomanNumerals
-using Base.Test
+using Compat, Compat.Test
 using Primes
 
 # Constructor tests
@@ -11,8 +11,8 @@ using Primes
 @test parse(RomanNumeral, "xx") == rn"XX"
 
 # Invalid numeral tests
-@test_throws InvalidRomanError RomanNumeral("nope")
-@test_throws InvalidRomanError RomanNumeral("XLX")
+@test_throws Meta.ParseError RomanNumeral("nope")
+@test_throws Meta.ParseError RomanNumeral("XLX")
 
 # arithmetic tests
 @test rn"I" + rn"IX" == rn"X"
