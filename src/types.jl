@@ -23,7 +23,6 @@ Base.Bool(::RN) = true
 (::Type{T})(num::RN) where {T <: Union{Base.BitInteger,BigInt}} = T(num.val)
 
 Base.promote_rule(::Type{RN}, ::Type{T}) where {T <: Integer} = T
-# Base.string(num::RN) = num.str
 
 # IO
 Base.show(io::IO, num::RN) = write(io, num.str)
