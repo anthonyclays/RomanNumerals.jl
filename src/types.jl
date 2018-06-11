@@ -1,5 +1,12 @@
 using Compat
 
+"""
+    RomanNumeral(::Integer)
+    RomanNumeral(::AbstractString)
+
+Roman number: it contains both the standard number and its roman representation.
+It behaves like standard numbers.
+"""
 @compat struct RomanNumeral <: Integer
     val::Int
     str::String
@@ -10,7 +17,7 @@ using Compat
     end
 end
 
-# This macro allows the rn"MMXV" syntactic sugar
+"""rn"MMXV" syntactic sugar"""
 macro rn_str(str)
     RomanNumeral(str)
 end
