@@ -30,11 +30,9 @@ const NUMERAL_MAP = [
 import Base: parse
 function parse(::Type{RomanNumeral}, str::AbstractString)
     m = match(VALID_ROMAN_PATTERN, str)
-    # Strip whitespace
-    str = m.captures[1]
-    # Make `str` uppercase
-    if !all(isupper,str); str = uppercase(str); end
     m ≡ nothing && throw(Meta.ParseError(str * " is not a valid roman numeral"))
+    # Strip whitespace and make uppercase
+    str = uppercase(m.captures[1])
     i = 1
     val = 0
     strlen = length(str)
@@ -53,15 +51,15 @@ function toroman(val::Integer)
     val <= 0 && throw(DomainError(val, "in ancient Rome there were only stricly positive numbers"))
     val > 5000 && @warn("Roman numerals do not handle large numbers well")
 
-    str = ""
+    str = IOBuffer()
     for (num_val, numeral) in NUMERAL_MAP
         i = div(val, num_val)
         # Never concatenate an empty string to `str`
         i == 0 && continue
-        str *= (numeral^i)
+        print(str, repeat(numeral,i))
         val -= i*num_val
         # Stop when ready
         val == 0 && break
     end
-    str
+    String(take!(str))
 end
