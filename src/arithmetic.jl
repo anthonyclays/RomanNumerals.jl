@@ -2,6 +2,8 @@ import Base: ==, isless, <=, <, >,
     +, -, *, ^, max, min, div, %, gcd, lcm,
     isqrt, isodd, iseven, one
 
+using Primes
+
 # Remember that RN is typealiased to RomanNumeral
 
 # Equality operators

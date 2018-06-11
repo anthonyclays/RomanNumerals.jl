@@ -2,18 +2,16 @@ __precompile__()
 
 module RomanNumerals
 
-VERSION >= v"0.5.0" && using Primes
-
-# Defines the exception InvalidRomanError and the immutable type RomanNumeral
+# Defines the exception the struct RomanNumeral
 include("types.jl")
 
-# Defines the functions toroman and fromroman, to convert from Roman-formatted
-# string to int and vice versa
+# Defines the functions toroman and parse(RomanNumeral, x), to convert from
+# Roman-formatted string to int and vice versa
 include("roman_conversion.jl")
 
 # Defines new method dispatching specific to Roman numerals
 include("arithmetic.jl")
 
-export RomanNumeral, @rn_str, InvalidRomanError
+export RomanNumeral, @rn_str
 
 end # module RomanNumerals
