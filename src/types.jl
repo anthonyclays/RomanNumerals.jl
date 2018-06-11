@@ -1,15 +1,15 @@
 using Compat
 
-immutable RomanNumeral <: Integer
+@compat struct RomanNumeral <: Integer
     val::Int
     str::String
-
     RomanNumeral(int::Integer) = new(int, toroman(int))
-    RomanNumeral(str::String) = begin
-        num = parseroman(str)
+    function RomanNumeral(str::AbstractString)
+        num = parse(RomanNumeral, str)
         new(num, toroman(num))
     end
 end
+
 # This macro allows the rn"MMXV" syntactic sugar
 macro rn_str(str)
     RomanNumeral(str)
