@@ -12,7 +12,7 @@ It behaves like standard numbers.
     str::String
     RomanNumeral(int::Integer) = new(int, toroman(int))
     function RomanNumeral(str::AbstractString)
-        num = parse(RomanNumeral, str)
+        num = fromroman(str)
         new(num, toroman(num))
     end
 end
