@@ -20,6 +20,7 @@ using Primes
 @test rn"X" > rn"IX"
 @test isqrt(rn"MXXIV") == rn"XXXII"
 @test rn"XX" ^ rn"II" == rn"CD"
+@test rn"I" / rn"I" == 1.0
 
 # primus numeri et factorii (quis scit?)
 @test factor(rn"XX")[rn"V"]    == rn"I"

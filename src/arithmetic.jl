@@ -2,6 +2,7 @@ import Base: ==, isless, <=, <, >,
     +, -, *, ^, max, min, div, %, gcd, lcm,
     isqrt, isodd, iseven, one
 
+using Primes
 import Primes: isprime, factor, primes
 
 # Remember that RN is typealiased to RomanNumeral
