@@ -24,12 +24,11 @@ end
 
 const RN = RomanNumeral
 
-# Standard functions
 # Conversion + promotion
-Base.convert(::Type{Bool}, ::RN) = true
 Base.convert(::Type{T}, x::RN) where {T<:Real} = T(x.val)
 
-Base.promote_rule(::Type{RN}, ::Type{T}) where {T <: Integer} = T
+Base.promote_rule(::Type{RN}, ::Type{T}) where {T <: Union{Signed, Unsigned}} = T
+Base.promote_rule(::Type{T}, ::Type{RN}) where {T <: Union{Signed, Unsigned}} = promote_rule(RN, T)
 
 # IO
 Base.show(io::IO, num::RN) = write(io, num.str)

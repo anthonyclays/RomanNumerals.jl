@@ -2,7 +2,7 @@ import Base: ==, isless, <=, <, >,
     +, -, *, ^, max, min, div, %, gcd, lcm,
     isqrt, isodd, iseven, one
 
-using Primes
+import Primes: isprime, factor, primes
 
 # Remember that RN is typealiased to RomanNumeral
 
@@ -35,12 +35,15 @@ for op in [:isodd, :iseven, :isprime]
     @eval $(op)(num::RN) = $(op)(num.val)
 end
 
+# Conversion to abstract float
+Base.AbstractFloat(x::RomanNumeral) = float(x.val)
+
 # Who knew Romans did number theory
-function Primes.factor(num::RN)
+function factor(num::RN)
     factors = Dict{RN,RN}()
     for (fac, mul) in factor(num.val)
         factors[RN(fac)] = RN(mul)
     end
     factors
 end
-Primes.primes(num::RN) = map(RN, Primes.primes(num.val))
+primes(num::RN) = map(RN, Primes.primes(num.val))
