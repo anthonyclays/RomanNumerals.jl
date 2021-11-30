@@ -1,0 +1,17 @@
+name = "RomanNumerals"
+uuid = "37834d88-8936-577c-80c9-1066ecf66832"
+authors = ["Anthony Clays <anthonyclays@gmail.com>"]
+version = "0.3.2"
+
+[deps]
+Primes = "27ebfcd6-29c5-5fa9-bf4b-fb8fc14df3ae"
+
+[compat]
+Primes = "0.5"
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

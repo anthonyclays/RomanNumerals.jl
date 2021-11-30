@@ -46,7 +46,6 @@ function parse(::Type{RomanNumeral}, str::AbstractString)
     val
 end
 
-using Compat: @warn
 function toroman(val::Integer)
     val <= 0 && throw(DomainError(val, "in ancient Rome there were only strictly positive numbers"))
     val > 5000 && @warn("Roman numerals do not handle large numbers well")

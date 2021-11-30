@@ -1,6 +1,6 @@
 using RomanNumerals
-using Compat, Compat.Test
 using Primes
+using Test
 
 # Constructor tests
 @test RomanNumeral(46) == RomanNumeral("XLVI")
