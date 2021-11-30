@@ -42,8 +42,7 @@ const NUMERAL_MAP = [
     (1,    "I")
 ]
 
-import Base: parse
-function parse(::Type{RomanNumeral}, str::AbstractString)
+function fromroman(str::AbstractString)
     m = match(VALID_ROMAN_PATTERN, str)
     m ≡ nothing && throw(Meta.ParseError(str * " is not a valid roman numeral"))
     # Strip whitespace and make uppercase
@@ -58,9 +57,13 @@ function parse(::Type{RomanNumeral}, str::AbstractString)
             i += numlen
         end
     end
-    val
+    return val
 end
 
+import Base: parse
+parse(::Type{RomanNumeral}, s::AbstractString) = RomanNumeral(fromroman(s))
+
+# using Compat: @warn
 function toroman(val::Integer)
     val <= 0 && throw(DomainError(val, "in ancient Rome there were only strictly positive numbers"))
     val > maximum(first(t) for t in NUMERAL_MAP) && @warn("Roman numerals do not handle large numbers well") # instead if maximum, use NUMERAL_MAP[1][1]?
