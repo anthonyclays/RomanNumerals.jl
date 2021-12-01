@@ -26,6 +26,7 @@ const RN = RomanNumeral
 # Conversion + promotion
 Base.convert(::Type{Bool}, ::RN) = true
 Base.convert(::Type{T}, x::RN) where {T<:Real} = T(x.val)
+(::Type{T})(x::RN) where T<:Number = convert(T, x)
 
 Base.promote_rule(::Type{RN}, ::Type{T}) where {T <: Integer} = T
 
@@ -33,3 +34,4 @@ Base.promote_rule(::Type{RN}, ::Type{T}) where {T <: Integer} = T
 Base.show(io::IO, num::RN) = write(io, num.str)
 Base.length(num::RN) = length(num.str)
 Base.hash(num::RN) = xor(hash(num.str), hash(num.val))
+Base.string(x::RomanNumeral) = x.str
